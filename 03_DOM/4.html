@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM | Chai aur Code</title>
+</head>
+<body style="background-color: black; color: white;">
+    <ul class="language">
+        <li>Javascript</li>
+    </ul>
+</body>
+
+<script>
+
+    function addLanguage(langName) {
+        const li = document.createElement("li");
+        li.innerHTML = `${langName}`;
+        document.querySelector(".language").appendChild(li);
+    }
+    
+    addLanguage("Python");
+    addLanguage("Typescript");
+
+    // as many times we add language in the end it traverse whole tree and goes to end which isn't an optimised approach...below is a better way to do it...
+
+
+    function addOptiLanguage(langName){
+        const li = document.createElement("li");
+        li.appendChild(document.createTextNode(langName));
+        document.querySelector(".language").appendChild(li);
+    }
+    addOptiLanguage("GoLang");
+
+
+    //To Edit any value...
+    const secondLang = document.querySelector("li:nth-child(2)");
+    // secondLang.innerHTML = "Mojo"; //again this is less optimised...
+
+    const newli = document.createElement("li");
+    newli.textContent = "Mojo";
+    // secondLang.replaceWith("newli");
+    secondLang.replaceWith(newli);
+
+    // another value edit...
+    const firstLang = document.querySelector("li:first-child");
+    firstLang.outerHTML = "<li>TypeScript</li>";
+
+
+    // remove a value...
+    const lastLang = document.querySelector("li:last-child");
+    lastLang.remove();
+
+
+
+</script>
+</html>
